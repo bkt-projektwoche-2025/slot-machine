@@ -56,7 +56,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(268, 34);
             textBox1.TabIndex = 1;
-            textBox1.Text = "Name";
+            textBox1.PlaceholderText = "Name";
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox2
@@ -67,7 +67,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(268, 34);
             textBox2.TabIndex = 2;
-            textBox2.Text = "Vorname";
+            textBox2.PlaceholderText = "Vorname";
             textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // LoginButton
@@ -113,9 +113,10 @@
             textBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox3.Location = new Point(270, 345);
             textBox3.Name = "textBox3";
+            textBox3.PasswordChar = '•';
             textBox3.Size = new Size(268, 34);
             textBox3.TabIndex = 9;
-            textBox3.Text = "Passwort";
+            textBox3.PlaceholderText = "Passwort";
             textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox4
@@ -126,7 +127,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(268, 34);
             textBox4.TabIndex = 8;
-            textBox4.Text = "E-Mail";
+            textBox4.PlaceholderText = "E-Mail";
             textBox4.TextAlign = HorizontalAlignment.Center;
             // 
             // Registrieren

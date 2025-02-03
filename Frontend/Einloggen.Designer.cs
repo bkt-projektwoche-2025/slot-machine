@@ -54,7 +54,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(268, 34);
             textBox1.TabIndex = 1;
-            textBox1.Text = "E-Mail";
+            textBox1.PlaceholderText = "E-Mail";
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox2
@@ -63,9 +63,10 @@
             textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(270, 281);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '•';
             textBox2.Size = new Size(268, 34);
             textBox2.TabIndex = 2;
-            textBox2.Text = "Passwort";
+            textBox2.PlaceholderText = "Passwort";
             textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // LoginButton
