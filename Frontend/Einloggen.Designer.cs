@@ -50,23 +50,23 @@
             // 
             textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(270, 230);
+            textBox1.Location = new Point(270, 247);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "E-Mail";
             textBox1.Size = new Size(268, 34);
             textBox1.TabIndex = 1;
-            textBox1.PlaceholderText = "E-Mail";
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox2
             // 
             textBox2.BorderStyle = BorderStyle.FixedSingle;
             textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(270, 281);
+            textBox2.Location = new Point(270, 298);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '•';
+            textBox2.PlaceholderText = "Passwort";
             textBox2.Size = new Size(268, 34);
             textBox2.TabIndex = 2;
-            textBox2.PlaceholderText = "Passwort";
             textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // LoginButton
@@ -75,7 +75,7 @@
             LoginButton.FlatAppearance.BorderSize = 0;
             LoginButton.FlatStyle = FlatStyle.Flat;
             LoginButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LoginButton.Location = new Point(270, 408);
+            LoginButton.Location = new Point(270, 428);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(268, 46);
             LoginButton.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.Location = new Point(270, 465);
+            linkLabel1.Location = new Point(270, 485);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(115, 28);
             linkLabel1.TabIndex = 6;
@@ -98,7 +98,7 @@
             // 
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel2.Location = new Point(434, 465);
+            linkLabel2.Location = new Point(434, 485);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(104, 28);
             linkLabel2.TabIndex = 7;
