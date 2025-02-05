@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Feb 2025 um 09:05
+-- Erstellungszeit: 04. Feb 2025 um 16:13
 -- Server-Version: 10.4.32-MariaDB
--- PHP-Version: 8.2.12
+-- PHP-Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,22 +18,22 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `slot-maschine`
+-- Datenbank: `ita22_dat_slot-maschine_wehn`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `login`
+-- Tabellenstruktur für Tabelle `user`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Vorname` varchar(20) NOT NULL,
-  `Geburtsdatum` date NOT NULL,
-  `E-Mail` varchar(50) NOT NULL,
-  `Passowrt` varchar(256) NOT NULL
+  `Name` varchar(30) NOT NULL,
+  `Vorname` varchar(30) NOT NULL,
+  `Mail` varchar(50) NOT NULL,
+  `Passwort` varchar(256) NOT NULL,
+  `Geburtsdatum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,9 +41,9 @@ CREATE TABLE `login` (
 --
 
 --
--- Indizes für die Tabelle `login`
+-- Indizes für die Tabelle `user`
 --
-ALTER TABLE `login`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -51,9 +51,9 @@ ALTER TABLE `login`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `login`
+-- AUTO_INCREMENT für Tabelle `user`
 --
-ALTER TABLE `login`
+ALTER TABLE `user`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
