@@ -1,7 +1,7 @@
 using Supabase;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
-using Supabase.Postgrest.Responses
+using Supabase.Postgrest.Responses;
 namespace Frontend
 {
 
