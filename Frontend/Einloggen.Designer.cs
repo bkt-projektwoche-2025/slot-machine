@@ -29,45 +29,46 @@
         private void InitializeComponent()
         {
             LoginLabel = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            Email = new TextBox();
+            Password = new TextBox();
             LoginButton = new Button();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
+            label2 = new Label();
             SuspendLayout();
             // 
             // LoginLabel
             // 
             LoginLabel.AutoSize = true;
             LoginLabel.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LoginLabel.Location = new Point(270, 125);
+            LoginLabel.Location = new Point(270, 80);
             LoginLabel.Name = "LoginLabel";
             LoginLabel.Size = new Size(268, 50);
             LoginLabel.TabIndex = 0;
             LoginLabel.Text = "Slot-Maschine";
             // 
-            // textBox1
+            // Email
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(270, 247);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "E-Mail";
-            textBox1.Size = new Size(268, 34);
-            textBox1.TabIndex = 1;
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            Email.BorderStyle = BorderStyle.FixedSingle;
+            Email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Email.Location = new Point(270, 228);
+            Email.Name = "Email";
+            Email.PlaceholderText = "E-Mail";
+            Email.Size = new Size(268, 34);
+            Email.TabIndex = 1;
+            Email.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox2
+            // Password
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(270, 298);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '•';
-            textBox2.PlaceholderText = "Passwort";
-            textBox2.Size = new Size(268, 34);
-            textBox2.TabIndex = 2;
-            textBox2.TextAlign = HorizontalAlignment.Center;
+            Password.BorderStyle = BorderStyle.FixedSingle;
+            Password.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Password.Location = new Point(270, 276);
+            Password.Name = "Password";
+            Password.PasswordChar = '•';
+            Password.PlaceholderText = "Password";
+            Password.Size = new Size(268, 34);
+            Password.TabIndex = 2;
+            Password.TextAlign = HorizontalAlignment.Center;
             // 
             // LoginButton
             // 
@@ -75,18 +76,19 @@
             LoginButton.FlatAppearance.BorderSize = 0;
             LoginButton.FlatStyle = FlatStyle.Flat;
             LoginButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LoginButton.Location = new Point(270, 428);
+            LoginButton.Location = new Point(270, 448);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(268, 46);
             LoginButton.TabIndex = 4;
             LoginButton.Text = "Anmelden";
             LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.Location = new Point(270, 485);
+            linkLabel1.Location = new Point(270, 505);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(115, 28);
             linkLabel1.TabIndex = 6;
@@ -98,7 +100,7 @@
             // 
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel2.Location = new Point(434, 485);
+            linkLabel2.Location = new Point(434, 505);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(104, 28);
             linkLabel2.TabIndex = 7;
@@ -106,21 +108,30 @@
             linkLabel2.Text = "Schließen?";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
+            // label2
+            // 
+            label2.Location = new Point(270, 416);
+            label2.Name = "label2";
+            label2.Size = new Size(268, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Bitte melden Sie sorgfältig an.";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
             // Einloggen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 600);
+            Controls.Add(label2);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(LoginButton);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(Password);
+            Controls.Add(Email);
             Controls.Add(LoginLabel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Einloggen";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -128,10 +139,11 @@
         #endregion
 
         private Label LoginLabel;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox Email;
+        private TextBox Password;
         private Button LoginButton;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
+        private Label label2;
     }
 }
