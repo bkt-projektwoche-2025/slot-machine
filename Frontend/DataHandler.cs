@@ -1,7 +1,7 @@
-﻿using Supabase;
+using Supabase;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
-using Supabase.Postgrest.Responses;
+using Supabase.Postgrest.Responses
 namespace Frontend
 {
 
@@ -91,7 +91,7 @@ namespace Frontend
                 name = name,
                 vorname = vorname,
                 email = email,
-                password = password,
+                password = BCrypt.Net.BCrypt.HashPassword(password),
                 birth_date = birth_date
             };
             ModeledResponse<UserData> insert = await supabase.From<UserData>().Insert(usermodel);
