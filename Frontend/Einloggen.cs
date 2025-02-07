@@ -1,4 +1,5 @@
 using Frontend;
+using Slot_Machine;
 using System.ComponentModel.DataAnnotations;
 
 namespace WinFormsApp1
@@ -34,12 +35,28 @@ namespace WinFormsApp1
                 label2.ForeColor = Color.Red;
                 label2.Text = "Etwas fehlt.";
                 return;
-            } else
+            }
+            else
             {
-                if (new EmailAddressAttribute().IsValid(Email.Text)) {
+                if (new EmailAddressAttribute().IsValid(Email.Text))
+                {
                     label2.ForeColor = SystemColors.Control;
                     new DataHandler().login(Email.Text, Password.Text, label2);
-                } else
+
+
+                    if(label2.Text=="Erfolg!")
+                    {
+                        Form1 Spiel = new Form1();
+                        Spiel.Dock = DockStyle.Fill;
+                        Spiel.TopLevel = false;
+                        TheForm.ActiveForm.Controls.Clear();
+                        TheForm.ActiveForm.Controls.Add(Spiel);
+                        TheForm.ActiveForm.Size = Spiel.Size;
+                        Spiel.Show();
+                        Spiel.Focus();
+                    }
+                }
+                else
                 {
                     label2.ForeColor = Color.Red;
                     label2.Text = "Email ungültig.";
