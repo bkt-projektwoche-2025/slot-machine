@@ -1,4 +1,5 @@
 using Frontend;
+using Slot_Machine;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
@@ -33,8 +34,8 @@ namespace WinFormsApp1
         {
             if (Email.Text == "" || Password.Text == "" || PasswortWiederholung.Text == "" || Vorname.Text == ""||_Name.Text=="")
             {
-                label7.ForeColor = Color.Red;
-                label7.Text = "Etwas fehlt.";
+                InfoBox.ForeColor = Color.Red;
+                InfoBox.Text = "Etwas fehlt.";
                 return;
             }
             else
@@ -45,30 +46,46 @@ namespace WinFormsApp1
                     {
                         if (password_IsValid(Password.Text))
                         {
-                            label7.ForeColor = SystemColors.Control;
-                            new DataHandler().register(_Name.Text, Vorname.Text, Email.Text, Password.Text, GebDat.Text, label7);
+                            InfoBox.ForeColor = SystemColors.Control;
+                            new DataHandler().register(_Name.Text, Vorname.Text, Email.Text, Password.Text, GebDat.Text, InfoBox);
                         } else
                         {
-                            label7.ForeColor = Color.Red;
-                            label7.Text = "Passwort ungültig.";
+                            InfoBox.ForeColor = Color.Red;
+                            InfoBox.Text = "Passwort ungültig.";
                         }
                     }
                     else if (new EmailAddressAttribute().IsValid(Email.Text)) {
-                        label7.ForeColor = Color.Red;
-                        label7.Text = "Passworteingabe stimmt nicht.";
+                        InfoBox.ForeColor = Color.Red;
+                        InfoBox.Text = "Passworteingabe stimmt nicht.";
                     }
                     else
                     {
-                        label7.ForeColor = Color.Red;
-                        label7.Text = "Email ungültig.";
+                        InfoBox.ForeColor = Color.Red;
+                        InfoBox.Text = "Email ungültig.";
                     }
                 } else
                 {
-                    label7.ForeColor = Color.Red;
-                    label7.Text = "Alter ungültig.";
+                    InfoBox.ForeColor = Color.Red;
+                    InfoBox.Text = "Alter ungültig.";
                 }
 
             }
+        }
+
+        private void InfoBox_Textchanged(object sender, EventArgs e) {
+            if (InfoBox.Text == "Erfolg!")
+            {
+                Form1 Spiel = new Form1();
+                Spiel.Dock = DockStyle.Fill;
+                Spiel.TopLevel = false;
+                TheForm.ActiveForm.Controls.Clear();
+                TheForm.ActiveForm.Controls.Add(Spiel);
+                TheForm.ActiveForm.Size = Spiel.Size;
+                Spiel.Show();
+                Spiel.Focus();
+
+            }
+            else return;
         }
 
         private bool password_IsValid(string password)

@@ -34,7 +34,7 @@
             LoginButton = new Button();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
-            label2 = new Label();
+            Infobox = new Label();
             SuspendLayout();
             // 
             // LoginLabel
@@ -105,24 +105,25 @@
             linkLabel2.Size = new Size(104, 28);
             linkLabel2.TabIndex = 7;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "Schließen?";
+            linkLabel2.Text = "Schließen";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
-            // label2
+            // Infobox
             // 
-            label2.Location = new Point(270, 416);
-            label2.Name = "label2";
-            label2.Size = new Size(268, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Bitte melden Sie sorgfältig an.";
-            label2.TextAlign = ContentAlignment.TopCenter;
+            Infobox.Location = new Point(270, 416);
+            Infobox.Name = "Infobox";
+            Infobox.Size = new Size(268, 20);
+            Infobox.TabIndex = 8;
+            Infobox.Text = "Bitte melden Sie sorgfältig an.";
+            Infobox.TextAlign = ContentAlignment.TopCenter;
+            Infobox.TextChanged += InfoBox_TextChanged;
             // 
             // Einloggen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 600);
-            Controls.Add(label2);
+            Controls.Add(Infobox);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(LoginButton);
@@ -144,6 +145,6 @@
         private Button LoginButton;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
-        private Label label2;
+        private Label Infobox;
     }
 }

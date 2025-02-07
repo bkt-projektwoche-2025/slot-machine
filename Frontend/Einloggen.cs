@@ -32,37 +32,39 @@ namespace WinFormsApp1
         {
             if(Email.Text==""||Password.Text=="")
             {
-                label2.ForeColor = Color.Red;
-                label2.Text = "Etwas fehlt.";
+                Infobox.ForeColor = Color.Red;
+                Infobox.Text = "Etwas fehlt.";
                 return;
             }
             else
             {
                 if (new EmailAddressAttribute().IsValid(Email.Text))
                 {
-                    label2.ForeColor = SystemColors.Control;
-                    new DataHandler().login(Email.Text, Password.Text, label2);
-
-
-                    if(label2.Text=="Erfolg!")
-                    {
-                        Form1 Spiel = new Form1();
-                        Spiel.Dock = DockStyle.Fill;
-                        Spiel.TopLevel = false;
-                        TheForm.ActiveForm.Controls.Clear();
-                        TheForm.ActiveForm.Controls.Add(Spiel);
-                        TheForm.ActiveForm.Size = Spiel.Size;
-                        Spiel.Show();
-                        Spiel.Focus();
-                    }
+                    Infobox.ForeColor = SystemColors.Control;
+                    new DataHandler().login(Email.Text, Password.Text, Infobox);
                 }
                 else
                 {
-                    label2.ForeColor = Color.Red;
-                    label2.Text = "Email ungültig.";
+                    Infobox.ForeColor = Color.Red;
+                    Infobox.Text = "Email ungültig.";
                 }
-                
             }
+        }
+        private void InfoBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Infobox.Text == "Erfolg!")
+            {
+                Form1 Spiel = new Form1();
+                Spiel.Dock = DockStyle.Fill;
+                Spiel.TopLevel = false;
+                TheForm.ActiveForm.Controls.Clear();
+                TheForm.ActiveForm.Controls.Add(Spiel);
+                TheForm.ActiveForm.Size = Spiel.Size;
+                Spiel.Show();
+                Spiel.Focus();
+
+            }
+            else return;
         }
     }
 }

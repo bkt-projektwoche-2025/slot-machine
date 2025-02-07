@@ -44,7 +44,7 @@
             label5 = new Label();
             label6 = new Label();
             PasswortWiederholung = new TextBox();
-            label7 = new Label();
+            InfoBox = new Label();
             SuspendLayout();
             // 
             // LoginLabel
@@ -160,11 +160,11 @@
             label1.TabIndex = 11;
             label1.Text = "Name:";
             // 
-            // label2
+            // Infobox
             // 
             label2.AutoSize = true;
             label2.Location = new Point(193, 205);
-            label2.Name = "label2";
+            label2.Name = "Infobox";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 12;
             label2.Text = "Vorname:";
@@ -217,22 +217,23 @@
             PasswortWiederholung.TabIndex = 5;
             PasswortWiederholung.TextAlign = HorizontalAlignment.Center;
             // 
-            // label7
+            // InfoBox
             // 
-            label7.Font = new Font("Segoe UI", 9F);
-            label7.Location = new Point(12, 417);
-            label7.Name = "label7";
-            label7.Size = new Size(776, 20);
-            label7.TabIndex = 18;
-            label7.Text = "Bitte geben Sie sorgfältig an.";
-            label7.TextAlign = ContentAlignment.TopCenter;
+            InfoBox.Font = new Font("Segoe UI", 9F);
+            InfoBox.Location = new Point(12, 417);
+            InfoBox.Name = "InfoBox";
+            InfoBox.Size = new Size(776, 20);
+            InfoBox.TabIndex = 18;
+            InfoBox.Text = "Bitte geben Sie sorgfältig an.";
+            InfoBox.TextAlign = ContentAlignment.TopCenter;
+            InfoBox.TextChanged += InfoBox_Textchanged;
             // 
             // Registrieren
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 600);
-            Controls.Add(label7);
+            Controls.Add(InfoBox);
             Controls.Add(label6);
             Controls.Add(PasswortWiederholung);
             Controls.Add(label5);
@@ -274,6 +275,6 @@
         private Label label5;
         private Label label6;
         private TextBox PasswortWiederholung;
-        private Label label7;
+        private Label InfoBox;
     }
 }
