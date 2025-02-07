@@ -55,21 +55,24 @@ namespace Slot_Machine
             // 
             // Button1
             // 
+            Button1.BackColor = Color.White;
+            Button1.FlatAppearance.BorderSize = 0;
+            Button1.FlatStyle = FlatStyle.Flat;
             Button1.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Button1.Location = new Point(393, 465);
+            Button1.Location = new Point(395, 491);
             Button1.Margin = new Padding(4, 5, 4, 5);
             Button1.Name = "Button1";
             Button1.Size = new Size(240, 148);
             Button1.TabIndex = 7;
             Button1.Text = "DREHEN";
-            Button1.UseVisualStyleBackColor = true;
+            Button1.UseVisualStyleBackColor = false;
             Button1.Click += Button1_Click;
             // 
             // PictureBox3
             // 
             PictureBox3.BackColor = Color.White;
             PictureBox3.Image = Frontend.Properties.Resources.sieben;
-            PictureBox3.Location = new Point(618, 176);
+            PictureBox3.Location = new Point(641, 150);
             PictureBox3.Margin = new Padding(4, 5, 4, 5);
             PictureBox3.Name = "PictureBox3";
             PictureBox3.Size = new Size(133, 274);
@@ -81,7 +84,7 @@ namespace Slot_Machine
             // 
             PictureBox2.BackColor = Color.White;
             PictureBox2.Image = Frontend.Properties.Resources.weintrauben;
-            PictureBox2.Location = new Point(413, 176);
+            PictureBox2.Location = new Point(441, 150);
             PictureBox2.Margin = new Padding(4, 5, 4, 5);
             PictureBox2.Name = "PictureBox2";
             PictureBox2.Size = new Size(133, 274);
@@ -93,7 +96,7 @@ namespace Slot_Machine
             // 
             PictureBox1.BackColor = Color.White;
             PictureBox1.Image = Frontend.Properties.Resources.wassermelone;
-            PictureBox1.Location = new Point(219, 176);
+            PictureBox1.Location = new Point(242, 150);
             PictureBox1.Margin = new Padding(4, 5, 4, 5);
             PictureBox1.Name = "PictureBox1";
             PictureBox1.Size = new Size(133, 274);
@@ -108,7 +111,7 @@ namespace Slot_Machine
             // lblMsg
             // 
             lblMsg.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            lblMsg.Location = new Point(517, 471);
+            lblMsg.Location = new Point(393, 414);
             lblMsg.Margin = new Padding(4, 0, 4, 0);
             lblMsg.Name = "lblMsg";
             lblMsg.Size = new Size(240, 62);
@@ -119,7 +122,7 @@ namespace Slot_Machine
             // 
             infolbl.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
             infolbl.ForeColor = SystemColors.Highlight;
-            infolbl.Location = new Point(219, 84);
+            infolbl.Location = new Point(242, 33);
             infolbl.Margin = new Padding(4, 0, 4, 0);
             infolbl.Name = "infolbl";
             infolbl.Size = new Size(261, 46);
@@ -128,43 +131,52 @@ namespace Slot_Machine
             // 
             // button2
             // 
-            button2.Location = new Point(219, 519);
+            button2.BackColor = Color.White;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(219, 531);
             button2.Margin = new Padding(4, 5, 4, 5);
             button2.Name = "button2";
             button2.Size = new Size(112, 105);
             button2.TabIndex = 11;
             button2.Text = "100€ EINZAHLEN";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
+            button3.BackColor = Color.White;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button3.Location = new Point(339, 519);
+            button3.Location = new Point(339, 531);
             button3.Margin = new Padding(4, 5, 4, 5);
             button3.Name = "button3";
             button3.Size = new Size(36, 40);
             button3.TabIndex = 12;
             button3.Text = "+";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(339, 581);
+            button4.BackColor = Color.White;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(339, 593);
             button4.Margin = new Padding(4, 5, 4, 5);
             button4.Name = "button4";
             button4.Size = new Size(36, 43);
             button4.TabIndex = 13;
             button4.Text = "-";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // betlbl
             // 
             betlbl.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
             betlbl.ForeColor = SystemColors.Highlight;
-            betlbl.Location = new Point(586, 84);
+            betlbl.Location = new Point(543, 33);
             betlbl.Margin = new Padding(4, 0, 4, 0);
             betlbl.Name = "betlbl";
             betlbl.Size = new Size(312, 46);
@@ -173,62 +185,80 @@ namespace Slot_Machine
             // 
             // button5
             // 
-            button5.Location = new Point(661, 521);
+            button5.BackColor = Color.White;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(659, 533);
             button5.Margin = new Padding(4, 5, 4, 5);
             button5.Name = "button5";
             button5.Size = new Size(100, 103);
             button5.TabIndex = 15;
             button5.Text = "EINSATZ";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
             // button6
             // 
+            button6.BackColor = Color.White;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            button6.Location = new Point(769, 521);
+            button6.Location = new Point(767, 533);
             button6.Margin = new Padding(4, 5, 4, 5);
             button6.Name = "button6";
             button6.Size = new Size(36, 40);
             button6.TabIndex = 16;
             button6.Text = "+";
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(769, 581);
+            button7.BackColor = Color.White;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Location = new Point(767, 593);
             button7.Margin = new Padding(4, 5, 4, 5);
             button7.Name = "button7";
             button7.Size = new Size(36, 43);
             button7.TabIndex = 17;
             button7.Text = "-";
-            button7.UseVisualStyleBackColor = true;
+            button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
             // button9
             // 
-            button9.Location = new Point(219, 460);
+            button9.BackColor = Color.White;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Location = new Point(219, 472);
             button9.Margin = new Padding(4, 5, 4, 5);
             button9.Name = "button9";
             button9.Size = new Size(112, 49);
             button9.TabIndex = 19;
             button9.Text = "EINZAHLEN";
-            button9.UseVisualStyleBackColor = true;
+            button9.UseVisualStyleBackColor = false;
             button9.Click += button9_Click;
             // 
             // button8
             // 
-            button8.Location = new Point(661, 460);
+            button8.BackColor = Color.White;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Location = new Point(659, 472);
             button8.Margin = new Padding(4, 5, 4, 5);
             button8.Name = "button8";
             button8.Size = new Size(144, 49);
             button8.TabIndex = 20;
             button8.Text = "SPIEL BEENDEN";
-            button8.UseVisualStyleBackColor = true;
+            button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
             // 
             // button10
             // 
+            button10.BackColor = Color.White;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button10.Location = new Point(863, 21);
             button10.Margin = new Padding(4, 5, 4, 5);
@@ -236,13 +266,14 @@ namespace Slot_Machine
             button10.Size = new Size(121, 58);
             button10.TabIndex = 21;
             button10.Text = "Regeln";
-            button10.UseVisualStyleBackColor = true;
+            button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click;
             // 
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
             panel1.Controls.Add(infolbl);
+            panel1.Controls.Add(lblMsg);
             panel1.Controls.Add(button10);
             panel1.Controls.Add(betlbl);
             panel1.Controls.Add(button7);
@@ -257,7 +288,7 @@ namespace Slot_Machine
             panel1.Controls.Add(button3);
             panel1.Controls.Add(PictureBox3);
             panel1.Controls.Add(button2);
-            panel1.Location = new Point(104, 60);
+            panel1.Location = new Point(143, 67);
             panel1.Name = "panel1";
             panel1.Size = new Size(1006, 679);
             panel1.TabIndex = 22;
@@ -269,7 +300,6 @@ namespace Slot_Machine
             BackColor = Color.Black;
             ClientSize = new Size(1269, 868);
             Controls.Add(panel1);
-            Controls.Add(lblMsg);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
