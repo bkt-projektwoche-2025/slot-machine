@@ -306,6 +306,7 @@ namespace Slot_Machine
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Slot Machine";
             Load += Form1_Load;
+            FormClosed += Form1_FormClosing;
             ((System.ComponentModel.ISupportInitialize)PictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox1).EndInit();

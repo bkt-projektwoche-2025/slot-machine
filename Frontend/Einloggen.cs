@@ -6,6 +6,7 @@ namespace WinFormsApp1
 {
     public partial class Einloggen : Form
     {
+        int user_id;
         public Einloggen()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace WinFormsApp1
                 if (new EmailAddressAttribute().IsValid(Email.Text))
                 {
                     Infobox.ForeColor = SystemColors.Control;
-                    new DataHandler().login(Email.Text, Password.Text, Infobox);
+                    new DataHandler().login(Email.Text, Password.Text, Infobox, user_id);
                 }
                 else
                 {
@@ -55,6 +56,7 @@ namespace WinFormsApp1
             if (Infobox.Text == "Erfolg!")
             {
                 Form1 Spiel = new Form1();
+                Spiel.id = user_id;
                 Spiel.Dock = DockStyle.Fill;
                 Spiel.TopLevel = false;
                 TheForm.ActiveForm.Controls.Clear();
