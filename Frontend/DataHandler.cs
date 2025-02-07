@@ -1,20 +1,21 @@
-﻿using Newtonsoft.Json;
-using System.Windows.Forms;
+﻿using System.Net.Http.Json;
 using Supabase;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using Supabase.Postgrest.Responses;
 using Slot_Machine;
+using WinFormsApp1;
+using System.Text.Json.Serialization;
 
 namespace Frontend
 {
 
-    [Table("users")]
-    class UserData : BaseModel
+    [Table("users")]//Tabelle
+    class UserData : BaseModel//Nutzerdaten-Modell
     {
-        [PrimaryKey("id")]
+        [PrimaryKey("id")]//Primary Key (ID, nicht schreibbar)
         public int id { get; set; }
-        [Column("name")]
+        [Column("name")]//Spalte
         public string name { get; set; }
         [Column("vorname")]
         public string vorname { get; set; }
@@ -26,86 +27,98 @@ namespace Frontend
         public string birth_date { get; set; }
 
     }
-    [Table("sessions")]
-    class SessionData : BaseModel
+    [Table("session")]
+    class SessionData : BaseModel//Session-Daten Modell
     {
-        [PrimaryKey("id")]
+        [Column("id")]
         public string token { get; set; }
         [Column("user_id")]
         public int user_id { get; set; }
         [Column("ip_address")]
         public string ip_address { get; set; }
-
     }
-    class SessionToken
+    [Table("game_data")]//Spieldaten-Modell
+    class GameData : BaseModel
     {
-        public string _token;
+        [PrimaryKey("event_id")]
+        public int id { get; set; }
+        [Column("uid")]
+        public int user_id { get; set; }
+        [Column("slot_1")]
+        public int slot_1 { get; set; }
+        [Column("slot_2")]
+        public int slot_2 { get; set; }
+        [Column("slot_3")]
+        public int slot_3 { get; set; }
+        [Column("coins_used")]
+        public int coins_used { get; set; }
+        [Column("coins_recieved")]
+        public int coins_recieved { get; set; }
+        [Column("coins")]
+        public int coins { get; set; }
+    }
+    class SessionToken //JSON-format Token-erhalten
+    {
+        [JsonPropertyName("_token")]
+        public string _token { get; set; }
     }
     internal class DataHandler
     {
+        //Supabase-Daten
         private readonly string key = "SupabaseKeyHere",
                url = "supabase.url.here";
         private readonly SupabaseOptions options = new Supabase.SupabaseOptions
         {
             AutoConnectRealtime = true
-        };
-        public static void LoadEnv(string filePath)
-        {
-            if (!File.Exists(filePath))
-                return;
+        };//Supabase-Config-Optionen
 
-            foreach (var line in File.ReadAllLines(filePath))
-            {
-                var parts = line.Split('=', StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length != 2)
-                    continue;
 
-                Environment.SetEnvironmentVariable(parts[0], parts[1]);
-            }
-        }
-        public async void login(string email, string password, Label label, int id)
+        public async void login(string email, string password, Label label, Einloggen einloggen)
         {
 
             Client supabase = new Client(url, key, options);
             await supabase.InitializeAsync();
+
+            //Nutzerexistenz mit Passwort und ID
             ModeledResponse<UserData> data = await supabase.From<UserData>().Select("id,password").Where(x => x.email == email).Get();
-            if (data.Model != null)
+            if (data.Model != null)//wenn Nutzerdaten existiert
             {
                 string the_password = data.Model.password;
-                if (BCrypt.Net.BCrypt.Verify(password, the_password))
-                {
 
+                if (BCrypt.Net.BCrypt.Verify(password, the_password))//wenn Passwort stimmt
+                {
+                    einloggen.user_id = data.Model.id;//ID ins Program eintragen
                     label.ForeColor = SystemColors.ControlText;
                     label.Text = "Erfolg!";
-                    id = data.Model.id;
 
                 }
-                else
+                else//passwort stimmt nicht.
                 {
                     label.ForeColor = Color.Red;
                     label.Text = "Credential ist falsch!";
                 }
             }
-            else
+            else //wenn Nutzerdaten nicht existiert.
             {
                 label.ForeColor = Color.Red;
                 label.Text = "Nutzer nicht gefunden!";
             }
 
         }
-        public async void register(string name, string vorname, string email, string password, string birth_date, Label label)
+        public async void register(string name, string vorname, string email, string password, string birth_date, Label label, Registrieren registrieren)
         {
 
             Client supabase = new Client(url, key, options);
             await supabase.InitializeAsync();
 
+            //Nutzerexistenz surch E-Mail.
             ModeledResponse<UserData> data = await supabase.From<UserData>().Select("email").Where(x => x.email == email).Get();
 
-            if (data.Model != null)
+            if (data.Model != null)//wenn Nutzer existiert
             {
                 label.ForeColor = Color.Red;
                 label.Text = "Nutzer existiert!";
-                return;
+                return;//Funktionende
             }
             UserData usermodel = new UserData()
             {
@@ -116,59 +129,44 @@ namespace Frontend
                 birth_date = birth_date
             };
             ModeledResponse<UserData> insert = await supabase.From<UserData>().Insert(usermodel);
+            registrieren.user_id = insert.Model.id;
             label.ForeColor = SystemColors.ControlText;
             label.Text = "Erfolg!";
         }
 
-        public async void create_session(int id, string token, Form1 theform)
+        public async void create_session(Spielfeld game)
         {
             Client supabase = new Client(url, key, options);
             await supabase.InitializeAsync();
 
-            if ((
+            if (game.user_id != null && (
                 await supabase
                 .From<SessionData>()
-                .Where(x => x.user_id == id)
+                .Where(x => x.user_id == game.user_id)
                 .Get()
-                ).Model!=null)
+                ).Model != null)//wenn session schon existiert
             {
-                theform.run_message("Du bist auf einer andere Client eingeloggt.");
-                theform.Close();
+                game.run_message("Du bist auf einer andere Client eingeloggt.");
+                game.exit();
                 return;
             }
 
-            var httpClient = new HttpClient();
-            using var httpResponse = await httpClient.GetAsync("https://slot-machine-backend-laravel.vercel.app/login", HttpCompletionOption.ResponseHeadersRead);
-            httpResponse.EnsureSuccessStatusCode();
-            if (httpResponse.Content is object && httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+            //Token generieren
+            game.session_token = (await new HttpClient().GetFromJsonAsync<SessionToken>("https://slot-machine-backend-laravel.vercel.app/login"))._token;
+
+            //Public-IP erhalten
+            string ip = (await new HttpClient().GetStringAsync("http://ipv4.icanhazip.com")).Replace("\\r\\n", "").Replace("\\n", "").Trim();
+            SessionData session = new SessionData()
             {
-                var contentStream = await httpResponse.Content.ReadAsStreamAsync();
-
-                using var streamReader = new StreamReader(contentStream);
-                using var jsonReader = new JsonTextReader(streamReader);
-
-                JsonSerializer serializer = new JsonSerializer();
-
-                try
-                {
-                    SessionToken jsondata = serializer.Deserialize<SessionToken>(jsonReader);
-                            
-                            
-                    supabase.From<SessionData>()
-                        .Where(x => x.token == jsondata._token)
-                        .Set(x => x.user_id, id);
-                    token = jsondata._token;
-
-                }
-                catch (JsonReaderException)
-                {
-                    Console.WriteLine("Invalid JSON.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("HTTP Response was invalid and cannot be deserialised.");
-            }
+                token = game.session_token,
+                user_id = game.user_id,
+                ip_address = ip
+            };//Sessiondaten mit Token, UID und IP
+            //supabase.From<SessionData>()
+            //    .Where(x => x.token == jsondata._token)
+            //    .Set(x => x.user_id, user_id);
+            await supabase.From<SessionData>().Insert(session);//Sessiondaten speichern
+            
         }
 
         public async void delete_session(int id, string token)
@@ -176,15 +174,65 @@ namespace Frontend
             Client supabase = new Client(url, key, options);
             await supabase.InitializeAsync();
 
-            supabase.From<SessionData>()
-                .Where(x => x.token == token && x.user_id == id)
-                .Delete();
+            await supabase.From<SessionData>()
+                .Where(x => x.token==token)
+                .Delete();//löschen, wo das Token ist (defekt aufgrund Datenbank)
 
         }
 
-        public async void add_data(int id, string session_token, int a, int b, int c, int guthabenstand)
+        public async void add_data(int id, string session_token, int a, int b, int c, int coins_used, int coins_recieved, int coins, Spielfeld form)
         {
+            Client supabase = new Client(url, key, options);
+            await supabase.InitializeAsync();
 
+            if ((await supabase
+                .From<SessionData>()
+                .Where(x => x.user_id == id)
+                .Get()
+                ).Model != null)//ob Sessiondaten existiert.
+            {
+                GameData gamedata = new GameData()//Spieldatum
+                {
+                    user_id = id,
+                    slot_1 = a,
+                    slot_2 = b,
+                    slot_3 = c,
+                    coins_used = coins_used,
+                    coins_recieved = coins_recieved,
+                    coins = coins
+                };
+                supabase.From<GameData>().Insert(gamedata);//Spielddaten einsetzen
+            }
+            else//wenn Sessiondaten nicht existiert.
+            {
+                form.exit();
+                form.run_message("Etwas stimmt mit dem Programm nicht.");
+                throw new Exception("Etwas stimmt mit dem Programm nicht.");
+            }
+        }
+        public async void load_data(Spielfeld spielfeld)
+        {
+            Client supabase = new Client(url, key, options);
+            await supabase.InitializeAsync();
+
+            if ((await supabase
+                .From<GameData>()
+                .Where(x => x.user_id == spielfeld.user_id)
+                .Get()
+                ).Model !=null)//ob Spieldaten existiert
+            {
+                GameData data = (await supabase
+                .From<GameData>()
+                .Where(x => x.user_id == spielfeld.user_id)
+                .Get()
+                ).Models.LastOrDefault();//letzte Ergebnis ist das Spielstand, basiert auf event_id
+
+                spielfeld.guthaben = data.coins;//Spielguthaben setzen 
+                spielfeld.einsatz = data.coins_used;//Einsatz setzen
+            } else
+            {
+                return;
+            }
         }
     }
 }

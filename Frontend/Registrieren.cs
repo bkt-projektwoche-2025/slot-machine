@@ -7,6 +7,7 @@ namespace WinFormsApp1
 {
     public partial class Registrieren : Form
     {
+        public int user_id;
         public Registrieren()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace WinFormsApp1
                         if (password_IsValid(Password.Text))
                         {
                             InfoBox.ForeColor = SystemColors.Control;
-                            new DataHandler().register(_Name.Text, Vorname.Text, Email.Text, Password.Text, GebDat.Text, InfoBox);
+                            new DataHandler().register(_Name.Text, Vorname.Text, Email.Text, Password.Text, GebDat.Text, InfoBox, this);
                         } else
                         {
                             InfoBox.ForeColor = Color.Red;
@@ -75,7 +76,11 @@ namespace WinFormsApp1
         private void InfoBox_Textchanged(object sender, EventArgs e) {
             if (InfoBox.Text == "Erfolg!")
             {
-                Form1 Spiel = new Form1();
+                if (user_id == 0) MessageBox.Show("Etwas ist fehlerhaft.");
+                Spielfeld Spiel = new Spielfeld() { 
+                    user_id = user_id
+                };
+                new DataHandler().create_session(Spiel);
                 Spiel.Dock = DockStyle.Fill;
                 Spiel.TopLevel = false;
                 TheForm.ActiveForm.Controls.Clear();
@@ -90,7 +95,8 @@ namespace WinFormsApp1
 
         private bool password_IsValid(string password)
         {
-            Regex validateGuidRegex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            //regex für Passwort-Format-Übereintimmung |   AbisZ       abisz       zahl        Zeichen     Anzahl von Characters
+            Regex validateGuidRegex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#,.?!@$%^&*_-]).{8,255}$");
             return validateGuidRegex.IsMatch(password);
 
         }

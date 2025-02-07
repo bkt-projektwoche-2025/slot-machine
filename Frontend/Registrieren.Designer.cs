@@ -252,7 +252,7 @@
             Controls.Add(LoginLabel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Registrieren";
-            Text = "Form1";
+            Text = "Spielfeld";
             ResumeLayout(false);
             PerformLayout();
         }

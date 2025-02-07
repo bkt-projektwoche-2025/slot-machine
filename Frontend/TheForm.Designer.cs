@@ -35,7 +35,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "TheForm";
-            Text = "Form1";
+            Text = "Spielfeld";
             Load += Form1_Load;
             ResumeLayout(false);
         }

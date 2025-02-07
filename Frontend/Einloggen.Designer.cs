@@ -132,7 +132,7 @@
             Controls.Add(LoginLabel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Einloggen";
-            Text = "Form1";
+            Text = "Spielfeld";
             ResumeLayout(false);
             PerformLayout();
         }
