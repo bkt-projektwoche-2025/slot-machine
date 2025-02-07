@@ -1,2 +1,5 @@
-# slot-machine
-Hier ist das Repo für das Projekt "Slot Machine"
+# Slot-Machine Backend
+
+----
+
+WIP Backend für das Spiel (momentan nur als "Tokengenerator" benutzt für App-Session)
