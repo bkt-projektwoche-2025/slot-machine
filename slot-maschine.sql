@@ -19,15 +19,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE game_data (
-    event_id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    uid bigint NOT NULL,
-    created_at timestamp DEFAULT now() NOT NULL,
-    slot_1 smallint NOT NULL,
-    slot_2 smallint NOT NULL,
-    slot_3 smallint NOT NULL,
-    coins_used bigint NOT NULL,
-    coins_recieved bigint DEFAULT '0' NOT NULL,
-    coins bigint DEFAULT '0' NOT NULL
+    event_id serial NOT NULL,
+    uid BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    slot_1 SMALLINT NOT NULL,
+    slot_2 SMALLINT NOT NULL,
+    slot_3 SMALLINT NOT NULL,
+    coins_used BIGINT NOT NULL,
+    coins_recieved BIGINT NOT NULL DEFAULT 0,
+    coins BIGINT NOT NULL DEFAULT 0,
+    PRIMARY KEY (event_id)
 );
 
 -- --------------------------------------------------------
@@ -37,11 +38,12 @@ CREATE TABLE game_data (
 --
 
 CREATE TABLE session (
-    id varchar DEFAULT '' NOT NULL PRIMARY KEY,
-    user_id bigint NOT NULL,
-    ip_address varchar NOT NULL,
-    created_at timestamp DEFAULT now() NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    id VARCHAR(255) NOT NULL DEFAULT '',
+    user_id BIGINT NOT NULL,
+    ip_address VARCHAR(16) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
 
 
 -- --------------------------------------------------------
@@ -51,18 +53,19 @@ CREATE TABLE session (
 --
 
 CREATE TABLE users (
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name character varying(255) NOT NULL,
-    vorname character varying(255) NOT NULL,
+    id serial NOT NULL,
+    name varchar(255) NOT NULL,
+    vorname varchar(255) NOT NULL,
     birth_date date NOT NULL,
-    email character varying(255) NOT NULL,
-    email_verified_at timestamp(0) without timezone,
-    password character varying(255) NOT NULL,
-    remember_token character varying(100),
-    created_at timestamp(0) without timezone,
-    updated_at timestamp(0) without timezone,
-    guthaben bigint DEFAULT '0' NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    email varchar(255) NOT NULL,
+    email_verified_at timestamp(0),
+    password varchar(255) NOT NULL,
+    remember_token varchar(100),
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    guthaben bigint DEFAULT '0' NOT NULL,
+    PRIMARY KEY (id)
+);
 
 --
 -- Indizes für die Tabelle `game`
