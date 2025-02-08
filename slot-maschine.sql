@@ -26,7 +26,7 @@ CREATE TABLE game_data (
     slot_2 smallint NOT NULL,
     slot_3 smallint NOT NULL,
     coins_used bigint NOT NULL,
-    coins_recieved bigint DEFAULT '0'::bigint NOT NULL,
+    coins_recieved bigint DEFAULT '0' NOT NULL,
     coins bigint DEFAULT '0'::bigint NOT NULL
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE game_data (
 --
 
 CREATE TABLE session (
-    id varchar DEFAULT ''::varchar NOT NULL,
+    id varchar DEFAULT '' NOT NULL,
     user_id bigint NOT NULL,
     ip_address varchar NOT NULL,
     created_at timestamp DEFAULT now() NOT NULL
@@ -61,7 +61,7 @@ CREATE TABLE users (
     remember_token character varying(100),
     created_at timestamp(0) without timezone,
     updated_at timestamp(0) without timezone,
-    guthaben bigint DEFAULT '0'::bigint NOT NULL
+    guthaben bigint DEFAULT '0' NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
