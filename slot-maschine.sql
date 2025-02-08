@@ -9,15 +9,13 @@
 -- Datenbank: `slot-maschine`
 --
 
-CREATE DATABASE slot-maschine IF NOT EXISTS;
-
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `game`
 --
 
-CREATE TABLE slot-maschine.game_data (
+CREATE TABLE game_data (
     event_id serial NOT NULL,
     uid BIGINT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +34,7 @@ CREATE TABLE slot-maschine.game_data (
 -- Tabellenstruktur für Tabelle `session`
 --
 
-CREATE TABLE slot-maschine.session (
+CREATE TABLE session (
     id VARCHAR(255) NOT NULL DEFAULT '',
     user_id BIGINT NOT NULL,
     ip_address VARCHAR(16) NOT NULL,
@@ -51,7 +49,7 @@ CREATE TABLE slot-maschine.session (
 -- Tabellenstruktur für Tabelle `users`
 --
 
-CREATE TABLE slot-maschine.users (
+CREATE TABLE users (
     id serial NOT NULL,
     name varchar(255) NOT NULL,
     vorname varchar(255) NOT NULL,
