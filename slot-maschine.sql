@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Erstellungszeit: 06. Feb 2025 um 12:24
--- Server-Version: 10.4.32-MariaDB
--- PHP-Version: 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -27,14 +18,17 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `game`
 --
 
-CREATE TABLE `game` (
-  `ID` int(11) NOT NULL,
-  `user_ID` int(11) NOT NULL,
-  `coins` int(11) NOT NULL,
-  `slot_1` int(11) NOT NULL,
-  `slot _2` int(11) NOT NULL,
-  `slot _3` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE game_data (
+    event_id bigint NOT NULL AUTO_INCREMENT,
+    uid bigint NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    slot_1 smallint NOT NULL,
+    slot_2 smallint NOT NULL,
+    slot_3 smallint NOT NULL,
+    coins_used bigint NOT NULL,
+    coins_recieved bigint DEFAULT '0'::bigint NOT NULL,
+    coins bigint DEFAULT '0'::bigint NOT NULL
+);
 
 -- --------------------------------------------------------
 
@@ -42,32 +36,33 @@ CREATE TABLE `game` (
 -- Tabellenstruktur für Tabelle `session`
 --
 
-CREATE TABLE `session` (
-  `token` varchar(55) NOT NULL,
-  `user_ID` int(11) NOT NULL
+CREATE TABLE session (
+    id varchar DEFAULT ''::varchar NOT NULL,
+    user_id bigint NOT NULL,
+    ip_address varchar NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user`
+-- Tabellenstruktur für Tabelle `users`
 --
 
-CREATE TABLE `user` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Vorname` varchar(30) NOT NULL,
-  `Mail` varchar(50) NOT NULL,
-  `Passwort` varchar(256) NOT NULL,
-  `Geburtsdatum` date NOT NULL
+CREATE TABLE users (
+    id bigint NOT NULL AUTO_INCREMENT,
+    name character varying(255) NOT NULL,
+    vorname character varying(255) NOT NULL,
+    birth_date date NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    guthaben bigint DEFAULT '0'::bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Daten für Tabelle `user`
---
-
-INSERT INTO `user` (`ID`, `Name`, `Vorname`, `Mail`, `Passwort`, `Geburtsdatum`) VALUES
-(1, 'Wehn', 'Axel', 'wehnaxel@gmail.com', '$2a$11$zZn/DKaOLh0EpEU4TYYozOnIXE2WkIUzUk9mw3sY4yCCl7BZt9Dbe', '1997-08-30');
 
 --
 -- Indizes der exportierten Tabellen
@@ -76,25 +71,27 @@ INSERT INTO `user` (`ID`, `Name`, `Vorname`, `Mail`, `Passwort`, `Geburtsdatum`)
 --
 -- Indizes für die Tabelle `game`
 --
-ALTER TABLE `game`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE game_data
+    ADD CONSTRAINT game_data_pkey PRIMARY KEY (event_id);
+ALTER TABLE game_data
+    ADD CONSTRAINT game_data_uid_fkey FOREIGN KEY (uid) REFERENCES users(id);
 
 --
--- Indizes für die Tabelle `user`
+-- Indizes für die Tabelle `session`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE session
+    ADD CONSTRAINT session_pkey PRIMARY KEY (id);
+ALTER TABLE session
+    ADD CONSTRAINT session_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- Indizes für die Tabelle `users`
 --
+ALTER TABLE users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+ALTER TABLE users
+ADD CONSTRAINT users_email_unique UNIQUE (email);
 
---
--- AUTO_INCREMENT für Tabelle `user`
---
-ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
