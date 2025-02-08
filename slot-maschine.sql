@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 CREATE TABLE game_data (
     event_id bigint NOT NULL AUTO_INCREMENT,
     uid bigint NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    created_at timestamp with timezone DEFAULT now() NOT NULL,
     slot_1 smallint NOT NULL,
     slot_2 smallint NOT NULL,
     slot_3 smallint NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE session (
     id varchar DEFAULT ''::varchar NOT NULL,
     user_id bigint NOT NULL,
     ip_address varchar NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL
+    created_at timestamp with timezone DEFAULT now() NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -56,11 +56,11 @@ CREATE TABLE users (
     vorname character varying(255) NOT NULL,
     birth_date date NOT NULL,
     email character varying(255) NOT NULL,
-    email_verified_at timestamp(0) without time zone,
+    email_verified_at timestamp(0) without timezone,
     password character varying(255) NOT NULL,
     remember_token character varying(100),
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
+    created_at timestamp(0) without timezone,
+    updated_at timestamp(0) without timezone,
     guthaben bigint DEFAULT '0'::bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
